@@ -1,7 +1,28 @@
-SELECT * FROM retail_sales
-LIMIT 10
+-- Data Setup
+CREATE DATABASE sql_project_two;
 
-SELECT COUNT(*)
+CREATE TABLE retail_sales
+(
+    transactions_id INT PRIMARY KEY,
+    sale_date DATE,
+    sale_time TIME,
+    customer_id INT,
+    gender VARCHAR(10),
+    age INT,
+    category VARCHAR(35),
+    quantity INT,
+    price_per_unit FLOAT,
+    cogs FLOAT,
+    total_sale FLOAT
+);
+
+-- Data Exploration & Cleaning
+-- How many sales we have?
+SELECT COUNT(*) as total_sales
+FROM retail_sales
+
+-- How many unique customers we have?
+SELECT COUNT(DISTINCT customer_id) as total_sales
 FROM retail_sales
 
 SELECT * FROM retail_sales
@@ -18,16 +39,17 @@ WHERE
     OR cogs IS NULL
     OR total_sale IS NULL
 
--- Data Exploration
-
--- Example Question:
--- How many sales we have?
-SELECT COUNT(*) as total_sales
-FROM retail_sales
-
--- How many unique customers we have?
-SELECT COUNT(DISTINCT customer_id) as total_sales
-FROM retail_sales
+DELETE FROM retail_sales
+WHERE
+    sale_date IS NULL 
+    OR sale_time IS NULL 
+    OR customer_id IS NULL 
+    OR gender IS NULL 
+    OR age IS NULL 
+    OR category IS NULL 
+    OR quantity IS NULL 
+    OR price_per_unit IS NULL 
+    OR cogs IS NULL;
 
 -- Data Analysis & Business Key Problems & Answers
 -- My Analysis & Findings
